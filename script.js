@@ -1,8 +1,14 @@
 // Create gameBoard module
 const gameBoard = (function() {
-    let array = ['X', 'O', 'O', 'O', 'O', 'X', 'O', 'X', 'O'];
+    let array = ['X', 'O', 'X', 'O', 'O', 'X', 'O', 'X', 'O'];
     return array;
 })()
 
-const container = document.querySelector('.container')
-container.textContent += gameBoard;
+const board = document.querySelector('.board')
+for (let i = 0; i < 9; i++) {
+    board.innerHTML += `
+    <div class="box">
+    <p>${gameBoard[i]}</p>
+    </div>
+    `;
+}
