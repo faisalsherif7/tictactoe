@@ -45,12 +45,18 @@ table {
 	border-spacing: 0;
 }
 
-.container {
+.board {
+    margin-top: 50vh;
     display: flex;
     justify-content: center;
 }
 
-.board {
-    white-space: pre;
+.board table{
+    border: 1px solid black;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid black;
 }
 
