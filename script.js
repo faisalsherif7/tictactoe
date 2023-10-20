@@ -45,6 +45,7 @@ const gameBoard = (function() {
     }
 
     return {
+        arr,
         defaultPopulate,
         displayBoard,
         updateBoard
@@ -61,6 +62,8 @@ let currentPlayer = player1;
 
 const gameController = (function() {
 
+    const arr = gameBoard.arr;
+
     const switchTurns = () => {
         if (currentPlayer === player1) {
             currentPlayer = player2;
@@ -71,8 +74,29 @@ const gameController = (function() {
         playerDisplay.textContent = `${currentPlayer.name}'s turn`;
     }
 
+    const checkGameOver = (name) => {
+        if (// Rows
+        (arr[0][0] === arr[0][1] && arr[0][0] === arr[0][2] && arr[0][0] !== '') ||
+        (arr[1][0] === arr[1][1] && arr[1][0] === arr[1][2] && arr[1][0] !== '') ||
+        (arr[2][0] === arr[2][1] && arr[2][0] === arr[2][2] && arr[2][0] !== '') ||
+        // Columns
+        (arr[0][0] === arr[1][0] && arr[0][0] === arr[2][0] && arr[0][0] !== '') ||
+        (arr[0][1] === arr[1][1] && arr[0][1] === arr[2][1] && arr[0][1] !== '') ||
+        (arr[0][2] === arr[1][2] && arr[0][2] === arr[2][2] && arr[0][2] !== '') ||
+        // Diagonals
+        (arr[0][0] === arr[1][1] && arr[0][0] === arr[2][2] && arr[0][0] !== '') ||
+        (arr[0][2] === arr[1][1] && arr[0][2] === arr[2][0] && arr[0][2] !== '')
+        ) {
+            // There's a win
+            console.log(`Take the W, ${name}`)
+          } else {
+            
+          }
+    }
+
     return {
-        switchTurns
+        switchTurns,
+        checkGameOver
     }
 })();
 
@@ -81,11 +105,12 @@ board.addEventListener('click', (event) => {
     let cell = event.target;
     if (cell.tagName === 'TD') {
         if (cell.textContent === 'X' || cell.textContent === 'O') {
-            return alert("can't do that");
+            return console.log("can't do that");
         }
         const i = cell.dataset.i;
         const j = cell.dataset.j;
         gameBoard.updateBoard(i, j, currentPlayer.marker)
+        gameController.checkGameOver(currentPlayer.name);
         gameController.switchTurns();
     }
     else {
@@ -95,6 +120,10 @@ board.addEventListener('click', (event) => {
 
 gameBoard.defaultPopulate()
 gameBoard.displayBoard();
+
+
+
+
 
 // From here on, code for the page
 
