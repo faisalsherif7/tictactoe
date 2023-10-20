@@ -3,8 +3,6 @@ const gameBoard = (function() {
     let rows = 3;
     let columns = 3;
 
-    let firstTime = true;
-
     const defaultPopulate = () => {
         // Populate array with X's as default
         for (let i = 0; i < rows; i++) {
@@ -13,13 +11,8 @@ const gameBoard = (function() {
                 arr[i][j] = '';
             }
         }
-        firstTime = false;
+        return 'done'
     }
-
-    if (firstTime === true) {
-        defaultPopulate();
-    }
-    
 
     // Display array as an html table
     const displayBoard = function() {
@@ -52,6 +45,7 @@ const gameBoard = (function() {
     }
 
     return {
+        defaultPopulate,
         displayBoard,
         updateBoard
     }
@@ -101,6 +95,11 @@ board.addEventListener('click', (event) => {
     }
 })
 
-
-
+gameBoard.defaultPopulate()
 gameBoard.displayBoard();
+
+const reset = document.querySelector('.reset-button')
+reset.addEventListener('click', () => {
+    gameBoard.defaultPopulate();
+    gameBoard.displayBoard();
+})
