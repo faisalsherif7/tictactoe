@@ -3,17 +3,28 @@ const gameBoard = (function() {
     let rows = 3;
     let columns = 3;
 
-    // Populate array with X's as default
-    for (let i = 0; i < rows; i++) {
-        arr[i] = [];
-        for (let j = 0; j < columns; j++) {
-            arr[i][j] = 'X';
+    let firstTime = true;
+
+    const defaultPopulate = () => {
+        // Populate array with X's as default
+        for (let i = 0; i < rows; i++) {
+            arr[i] = [];
+            for (let j = 0; j < columns; j++) {
+                arr[i][j] = 'X';
+            }
         }
+        firstTime = false;
     }
+
+    if (firstTime === true) {
+        defaultPopulate();
+    }
+    
 
     // Display array as an html table
     const displayBoard = function() {
         const board = document.querySelector('.board')
+        board.textContent = '';
     
         let table = document.createElement('table');
         let tableBody = document.createElement('tbody');
@@ -35,8 +46,9 @@ const gameBoard = (function() {
         board.appendChild(table);
     };
 
-    const updateBoard = () => {
-
+    const updateBoard = (i, j, marker) => {
+        arr[i][j] = marker;
+        displayBoard();
     }
 
     return {
@@ -52,31 +64,44 @@ function createPlayer (name, marker) {
 const player1 = createPlayer('player1', 'X');
 const player2 = createPlayer('player2', 'O');
 
-
-
 const gameController = (function() {
     let currentPlayer = player1;
 
     const switchTurns = () => {
         if (currentPlayer === player1) {
             currentPlayer = player2;
+            console.log(`changing player to ${currentPlayer.name}`)
         } else {
             currentPlayer = player1;
+            console.log(`changing player to ${currentPlayer.name}`)
         }
     }
 
-    let allCells = document.querySelectorAll('td')
-    allCells.forEach((cell) => {
-        cell.addEventListener('click', () => {
-            const i = cell.dataset.i;
-            const j = cell.dataset.j;
-            updateBoard(i, j, currentPlayer.marker)
-        })
-    });
+    
 
     return {
         currentPlayer, 
+        switchTurns
     }
 })();
 
-console.log(gameController.currentPlayer.marker)
+const board = document.querySelector('.board');
+board.addEventListener('click', (event) => {
+    if (event.target.tagName === 'TD') {
+
+        console.log(gameController.currentPlayer.name);
+
+        let cell = event.target;
+        const i = cell.dataset.i;
+        const j = cell.dataset.j;
+        gameBoard.updateBoard(i, j, gameController.currentPlayer.marker)
+        gameController.switchTurns();
+    }
+    else {
+        console.log(event.target)
+    }
+})
+
+
+
+gameBoard.displayBoard();
