@@ -35,6 +35,8 @@ const displayPopulate = (function() {
             const cellText = document.createTextNode(marker);
             cell.appendChild(cellText);
             row.appendChild(cell);
+            cell.setAttribute('data-i', `${i}`);
+            cell.setAttribute('data-j', `${j}`)
         }
         tableBody.appendChild(row);
     }
