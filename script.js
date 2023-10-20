@@ -1,14 +1,17 @@
-const Gameboard = (function() {
-    let array = ['X', 'O', 'X', 'O', 'O', 'X', 'O', 'X', 'O'];
+const gameBoard = (function() {
     
-    const board = document.querySelector('.board')
+    // Create array to store gameboard
+    let arr = [];
+    let rows = 3;
+    let columns = 3;
 
-    let counter = 0
-    for (let i = 0; i < 3; i++) {
-        board.textContent += array[counter]
-        board.textContent += array[counter + 1]
-        board.textContent += array[counter + 2]
-        board.textContent += '\r\n'
-        counter = counter + 3
+    for (let i = 0; i < rows; i++) {
+        arr[i] = [];
+        for (let j = 0; j < columns; j++) {
+            arr[i][j] = 'X';
+        }
     }
-})()
+
+    console.log(arr);
+
+})();
