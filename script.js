@@ -10,7 +10,7 @@ const gameBoard = (function() {
         for (let i = 0; i < rows; i++) {
             arr[i] = [];
             for (let j = 0; j < columns; j++) {
-                arr[i][j] = 'X';
+                arr[i][j] = '';
             }
         }
         firstTime = false;
@@ -63,9 +63,9 @@ function createPlayer (name, marker) {
 
 const player1 = createPlayer('player1', 'X');
 const player2 = createPlayer('player2', 'O');
+let currentPlayer = player1;
 
 const gameController = (function() {
-    let currentPlayer = player1;
 
     const switchTurns = () => {
         if (currentPlayer === player1) {
@@ -80,7 +80,6 @@ const gameController = (function() {
     
 
     return {
-        currentPlayer, 
         switchTurns
     }
 })();
@@ -89,12 +88,12 @@ const board = document.querySelector('.board');
 board.addEventListener('click', (event) => {
     if (event.target.tagName === 'TD') {
 
-        console.log(gameController.currentPlayer.name);
+        console.log(currentPlayer.name);
 
         let cell = event.target;
         const i = cell.dataset.i;
         const j = cell.dataset.j;
-        gameBoard.updateBoard(i, j, gameController.currentPlayer.marker)
+        gameBoard.updateBoard(i, j, currentPlayer.marker)
         gameController.switchTurns();
     }
     else {
