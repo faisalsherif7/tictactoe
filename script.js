@@ -69,9 +69,10 @@ const gameController = (function() {
             currentPlayer = player1;
             console.log(`changing player to ${currentPlayer.name}`)
         }
+        const playerDisplay = document.querySelector('.current-player');
+        playerDisplay.textContent = '';
+        playerDisplay.textContent += `${currentPlayer.name}'s turn`;
     }
-
-    
 
     return {
         switchTurns
@@ -98,8 +99,11 @@ board.addEventListener('click', (event) => {
 gameBoard.defaultPopulate()
 gameBoard.displayBoard();
 
+// From here on, code for the page
+
 const reset = document.querySelector('.reset-button')
 reset.addEventListener('click', () => {
     gameBoard.defaultPopulate();
     gameBoard.displayBoard();
 })
+
