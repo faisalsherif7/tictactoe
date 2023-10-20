@@ -81,11 +81,11 @@ const gameController = (function() {
 
 const board = document.querySelector('.board');
 board.addEventListener('click', (event) => {
-    if (event.target.tagName === 'TD') {
-
-        console.log(currentPlayer.name);
-
-        let cell = event.target;
+    let cell = event.target;
+    if (cell.tagName === 'TD') {
+        if (cell.textContent === 'X' || cell.textContent === 'O') {
+            return alert("can't do that");
+        }
         const i = cell.dataset.i;
         const j = cell.dataset.j;
         gameBoard.updateBoard(i, j, currentPlayer.marker)
