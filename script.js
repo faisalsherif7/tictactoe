@@ -64,14 +64,11 @@ const gameController = (function() {
     const switchTurns = () => {
         if (currentPlayer === player1) {
             currentPlayer = player2;
-            console.log(`changing player to ${currentPlayer.name}`)
         } else {
             currentPlayer = player1;
-            console.log(`changing player to ${currentPlayer.name}`)
         }
         const playerDisplay = document.querySelector('.current-player');
-        playerDisplay.textContent = '';
-        playerDisplay.textContent += `${currentPlayer.name}'s turn`;
+        playerDisplay.textContent = `${currentPlayer.name}'s turn`;
     }
 
     return {
@@ -103,7 +100,11 @@ gameBoard.displayBoard();
 
 const reset = document.querySelector('.reset-button')
 reset.addEventListener('click', () => {
+    currentPlayer = player1;
     gameBoard.defaultPopulate();
     gameBoard.displayBoard();
+
+    const playerDisplay = document.querySelector('.current-player');
+    playerDisplay.textContent = `${currentPlayer.name}'s turn`;
 })
 
