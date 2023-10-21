@@ -87,10 +87,22 @@ const gameController = (function() {
         (arr[0][0] === arr[1][1] && arr[0][0] === arr[2][2] && arr[0][0] !== '') ||
         (arr[0][2] === arr[1][1] && arr[0][2] === arr[2][0] && arr[0][2] !== '')
         ) {
+
             // There's a win
             console.log(`Take the W, ${name}`)
           } else {
-            
+
+            // Return function if there's a single empty column
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if(arr[i][j] === '') {
+                        return;
+                    };
+                }
+            }
+
+            // If it got here; then there's no win, and no empty columns, so its a tie
+            console.log('tie!')
           }
     }
 
