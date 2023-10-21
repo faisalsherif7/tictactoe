@@ -59,19 +59,7 @@ function createPlayer (name, marker) {
 // Take input from form and create an object containing two players
 const playerForm = document.querySelector('.player-form')
 const players = playerForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    let playerOne = document.querySelector('.player-one');
-    let playerTwo = document.querySelector('.player-two');
-
-    const player1 = createPlayer(playerOne, 'X');
-    const player2 = createPlayer(playerTwo, 'O');
-
-    return {
-        player1,
-        player2
-    }
-
+    gameController.setPlayers(event);
 })
 
 const player1 = createPlayer('player1', 'X');
@@ -79,7 +67,7 @@ const player2 = createPlayer('player2', 'O');
 let currentPlayer = player1;
 
 const gameController = (function() {
-
+    
     const arr = gameBoard.arr;
 
     const switchTurns = () => {
@@ -141,10 +129,26 @@ const gameController = (function() {
         }
     }
 
+    const setPlayers = (event) => {
+        event.preventDefault();
+
+        let playerOne = document.querySelector('.player-one');
+        let playerTwo = document.querySelector('.player-two');
+
+        const player1 = createPlayer(playerOne, 'X');
+        const player2 = createPlayer(playerTwo, 'O');
+
+        return {
+            player1,
+            player2
+        }
+    }   
+
     return {
         switchTurns,
         checkGameOver,
-        click
+        click,
+        setPlayers
     }
 })();
 
