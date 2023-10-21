@@ -124,28 +124,35 @@ const gameController = (function() {
           }
     }
 
+    const click = (event) => {
+        let cell = event.target;
+        if (cell.tagName === 'TD') {
+            if (cell.textContent === 'X' || cell.textContent === 'O') {
+                return console.log("can't do that");
+            }
+            const i = cell.dataset.i;
+            const j = cell.dataset.j;
+            gameBoard.updateBoard(i, j, currentPlayer.marker)
+            checkGameOver(currentPlayer.name);
+            switchTurns();
+        }
+        else {
+            console.log(event.target)
+        }
+    }
+
     return {
         switchTurns,
-        checkGameOver
+        checkGameOver,
+        click
     }
 })();
 
+
+
 const board = document.querySelector('.board');
 board.addEventListener('click', (event) => {
-    let cell = event.target;
-    if (cell.tagName === 'TD') {
-        if (cell.textContent === 'X' || cell.textContent === 'O') {
-            return console.log("can't do that");
-        }
-        const i = cell.dataset.i;
-        const j = cell.dataset.j;
-        gameBoard.updateBoard(i, j, currentPlayer.marker)
-        gameController.checkGameOver(currentPlayer.name);
-        gameController.switchTurns();
-    }
-    else {
-        console.log(event.target)
-    }
+    gameController.click(event);
 })
 
 gameBoard.defaultPopulate()
