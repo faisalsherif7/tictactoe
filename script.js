@@ -139,7 +139,7 @@ const gameController = (function() {
         let cell = event.target;
         if (cell.tagName === 'TD') {
             if (cell.textContent === 'X' || cell.textContent === 'O') {
-                return console.log("can't do that");
+                return;
             }
             if (currentPlayer === undefined) {
                 return playerDisplay.textContent = `Enter player name!`;
@@ -151,9 +151,6 @@ const gameController = (function() {
             if (result.textContent === '') {
                 switchTurns();
             }
-        }
-        else {
-            console.log(event.target)
         }
     }
 
