@@ -56,6 +56,24 @@ function createPlayer (name, marker) {
     return { name, marker };
 };
 
+// Take input from form and create an object containing two players
+const playerForm = document.querySelector('.player-form')
+const players = playerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let playerOne = document.querySelector('.player-one');
+    let playerTwo = document.querySelector('.player-two');
+
+    const player1 = createPlayer(playerOne, 'X');
+    const player2 = createPlayer(playerTwo, 'O');
+
+    return {
+        player1,
+        player2
+    }
+
+})
+
 const player1 = createPlayer('player1', 'X');
 const player2 = createPlayer('player2', 'O');
 let currentPlayer = player1;
@@ -148,4 +166,5 @@ reset.addEventListener('click', () => {
     const playerDisplay = document.querySelector('.current-player');
     playerDisplay.textContent = `${currentPlayer.name}'s turn`;
 })
+
 
