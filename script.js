@@ -67,8 +67,28 @@ const player2 = createPlayer('player2', 'O');
 
 const gameController = (function() {
     
-    let currentPlayer = player1;
+    let currentPlayer;
     const arr = gameBoard.arr;
+
+    const setPlayers = (event) => {
+        event.preventDefault();
+
+        let playerOne = document.querySelector('#player-one').value;
+        let playerTwo = document.querySelector('#player-two').value;
+
+        const player1 = createPlayer(playerOne, 'X');
+        const player2 = createPlayer(playerTwo, 'O');
+
+        currentPlayer = player1;
+
+        console.log(`inside setPlayers, currentplayer is ${currentPlayer}`)
+
+        return {
+            player1,
+            player2
+        }
+    }
+    
 
     const switchTurns = () => {
         if (currentPlayer === player1) {
@@ -129,26 +149,11 @@ const gameController = (function() {
         }
     }
 
-    const setPlayers = (event) => {
-        event.preventDefault();
-
-        let playerOne = document.querySelector('.player-one');
-        let playerTwo = document.querySelector('.player-two');
-
-        const player1 = createPlayer(playerOne, 'X');
-        const player2 = createPlayer(playerTwo, 'O');
-
-        return {
-            player1,
-            player2
-        }
-    }   
-
     return {
+        setPlayers,
         switchTurns,
         checkGameOver,
-        click,
-        setPlayers
+        click
     }
 })();
 
