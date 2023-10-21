@@ -11,7 +11,7 @@ const gameBoard = (function() {
                 arr[i][j] = '';
             }
         }
-        return 'done'
+        displayBoard();
     }
 
     // Display array as an html table
@@ -70,6 +70,7 @@ const gameController = (function() {
     let player2;
     const arr = gameBoard.arr;
     const playerDisplay = document.querySelector('.current-player');
+    const result = document.querySelector('.result');
 
     const setPlayers = (event) => {
         event.preventDefault();
@@ -114,7 +115,9 @@ const gameController = (function() {
         ) {
 
             // There's a win
-            console.log(`Take the W, ${name}`)
+            playerDisplay.textContent = '';
+            return result.textContent = `Take the W, ${name}`;
+
           } else {
 
             // Return function if there's a single empty column
@@ -127,7 +130,8 @@ const gameController = (function() {
             }
 
             // If it got here; then there's no win, and no empty columns, so its a tie
-            console.log('tie!')
+            playerDisplay.textContent = '';
+            return result.textContent = 'tie!';
           }
     }
 
@@ -144,7 +148,9 @@ const gameController = (function() {
             const j = cell.dataset.j;
             gameBoard.updateBoard(i, j, currentPlayer.marker)
             checkGameOver(currentPlayer.name);
-            switchTurns();
+            if (result.textContent === '') {
+                switchTurns();
+            }
         }
         else {
             console.log(event.target)
@@ -154,9 +160,8 @@ const gameController = (function() {
     const resetGame = () => {
         currentPlayer = undefined;
         gameBoard.defaultPopulate();
-        gameBoard.displayBoard();
-
         playerDisplay.textContent = `Enter player name!`;
+        result.textContent = '';
     }
 
     return {
@@ -176,7 +181,6 @@ board.addEventListener('click', (event) => {
 })
 
 gameBoard.defaultPopulate()
-gameBoard.displayBoard();
 
 
 
