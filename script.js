@@ -64,10 +64,10 @@ const players = playerForm.addEventListener('submit', (event) => {
 
 const player1 = createPlayer('player1', 'X');
 const player2 = createPlayer('player2', 'O');
-let currentPlayer = player1;
 
 const gameController = (function() {
     
+    let currentPlayer = player1;
     const arr = gameBoard.arr;
 
     const switchTurns = () => {
