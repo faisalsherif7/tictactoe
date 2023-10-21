@@ -43,7 +43,7 @@ q:before, q:after {
 
 :root {
     --primary-color: #b91c1c;
-    --secondary-color: #f87171;
+    --secondary-color: #facc15;
     --tertiary-color: #22c55e;
 }
 
@@ -52,7 +52,6 @@ q:before, q:after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
     height: 100vh;
 }
 
@@ -62,12 +61,12 @@ table{
 }
 
 td {
-    border: 1px solid black;
     border-radius: 10px;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     text-align: center;
     vertical-align: middle;
+    background-color: white;
 }
 
 .form {
@@ -78,7 +77,6 @@ td {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: stretch;
-    margin-bottom: 20vh;
 }
 
 input {
@@ -94,4 +92,12 @@ input::placeholder {
     color: black;
     font-weight: bold;
     font-size: large;
+}
+
+button {
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    font-size: 1.5rem;
 }
