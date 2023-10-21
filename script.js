@@ -62,13 +62,14 @@ const players = playerForm.addEventListener('submit', (event) => {
     gameController.setPlayers(event);
 })
 
-const player1 = createPlayer('player1', 'X');
-const player2 = createPlayer('player2', 'O');
 
 const gameController = (function() {
     
     let currentPlayer;
+    let player1;
+    let player2;
     const arr = gameBoard.arr;
+    const playerDisplay = document.querySelector('.current-player');
 
     const setPlayers = (event) => {
         event.preventDefault();
@@ -76,19 +77,18 @@ const gameController = (function() {
         let playerOne = document.querySelector('#player-one').value;
         let playerTwo = document.querySelector('#player-two').value;
 
-        const player1 = createPlayer(playerOne, 'X');
-        const player2 = createPlayer(playerTwo, 'O');
+        player1 = createPlayer(playerOne, 'X');
+        player2 = createPlayer(playerTwo, 'O');
 
         currentPlayer = player1;
 
-        console.log(`inside setPlayers, currentplayer is ${currentPlayer}`)
+        playerDisplay.textContent = `${currentPlayer.name}'s turn`;
 
         return {
             player1,
             player2
         }
     }
-    
 
     const switchTurns = () => {
         if (currentPlayer === player1) {
@@ -96,7 +96,6 @@ const gameController = (function() {
         } else {
             currentPlayer = player1;
         }
-        const playerDisplay = document.querySelector('.current-player');
         playerDisplay.textContent = `${currentPlayer.name}'s turn`;
     }
 
@@ -138,6 +137,9 @@ const gameController = (function() {
             if (cell.textContent === 'X' || cell.textContent === 'O') {
                 return console.log("can't do that");
             }
+            if (currentPlayer === undefined) {
+                return playerDisplay.textContent = `Enter player name!`;
+            }
             const i = cell.dataset.i;
             const j = cell.dataset.j;
             gameBoard.updateBoard(i, j, currentPlayer.marker)
@@ -149,16 +151,25 @@ const gameController = (function() {
         }
     }
 
+    const resetGame = () => {
+        currentPlayer = undefined;
+        gameBoard.defaultPopulate();
+        gameBoard.displayBoard();
+
+        playerDisplay.textContent = `Enter player name!`;
+    }
+
     return {
         setPlayers,
         switchTurns,
         checkGameOver,
-        click
+        click, 
+        resetGame
     }
 })();
 
 
-
+// Event listener for clicks on gameBoard
 const board = document.querySelector('.board');
 board.addEventListener('click', (event) => {
     gameController.click(event);
@@ -170,17 +181,10 @@ gameBoard.displayBoard();
 
 
 
-
-// From here on, code for the page
-
+// Reset button
 const reset = document.querySelector('.reset-button')
 reset.addEventListener('click', () => {
-    currentPlayer = player1;
-    gameBoard.defaultPopulate();
-    gameBoard.displayBoard();
-
-    const playerDisplay = document.querySelector('.current-player');
-    playerDisplay.textContent = `${currentPlayer.name}'s turn`;
+    gameController.resetGame();
 })
 
 
