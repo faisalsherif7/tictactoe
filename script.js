@@ -52,17 +52,6 @@ const gameBoard = (function() {
     }
 })();
 
-function createPlayer (name, marker) {
-    return { name, marker };
-};
-
-// Take input from form and create an object containing two players
-const playerForm = document.querySelector('.player-form')
-const players = playerForm.addEventListener('submit', (event) => {
-    gameController.setPlayers(event);
-})
-
-
 const gameController = (function() {
     
     let currentPlayer;
@@ -170,17 +159,11 @@ const gameController = (function() {
     }
 })();
 
-
-// Event listener for clicks on gameBoard
-const board = document.querySelector('.board');
-board.addEventListener('click', (event) => {
-    gameController.click(event);
-})
+function createPlayer (name, marker) {
+    return { name, marker };
+};
 
 gameBoard.defaultPopulate()
-
-
-
 
 // Reset button
 const reset = document.querySelector('.reset-button')
@@ -188,4 +171,16 @@ reset.addEventListener('click', () => {
     gameController.resetGame();
 })
 
+// Take input from form and create an object containing two players
+const playerForm = document.querySelector('.player-form')
+const players = playerForm.addEventListener('submit', (event) => {
+    gameController.setPlayers(event);
+})
+
+
+// Event listener for clicks on gameBoard
+const board = document.querySelector('.board');
+board.addEventListener('click', (event) => {
+    gameController.click(event);
+})
 
