@@ -124,7 +124,7 @@ const gameController = (function() {
 
             // There's a win
             playerDisplay.textContent = '';
-            return result.textContent = `Take the W, ${name}`;
+            return result.textContent = `${name} Wins!`;
 
           } else {
 
@@ -139,7 +139,7 @@ const gameController = (function() {
 
             // If it got here; then there's no win, and no empty columns, so its a tie
             playerDisplay.textContent = '';
-            return result.textContent = 'tie!';
+            return result.textContent = `It's a tie!`;
           }
     }
 

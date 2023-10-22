@@ -144,3 +144,13 @@ button {
     justify-content: center;
     align-items: center;
 }
+
+.current-player,
+.result {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.result {
+    color: white;
+}
