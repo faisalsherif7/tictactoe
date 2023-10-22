@@ -37,6 +37,9 @@ const gameBoard = (function() {
         }
         table.appendChild(tableBody);
         board.appendChild(table);
+
+        const reset = document.querySelector('.reset')
+        reset.innerHTML += '<button type="button" class="reset-button">Reset</button>'
     };
 
     const updateBoard = (i, j, marker) => {
@@ -163,18 +166,19 @@ function createPlayer (name, marker) {
     return { name, marker };
 };
 
-gameBoard.defaultPopulate()
-
 // Reset button
-const reset = document.querySelector('.reset-button')
-reset.addEventListener('click', () => {
-    gameController.resetGame();
+const reset = document.querySelector('.reset')
+reset.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        location.reload();
+    }
 })
 
 // Take input from form and create an object containing two players
 const playerForm = document.querySelector('.player-form')
 const players = playerForm.addEventListener('submit', (event) => {
     gameController.setPlayers(event);
+    gameBoard.defaultPopulate();
 })
 
 
