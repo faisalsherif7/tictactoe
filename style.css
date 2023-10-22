@@ -101,6 +101,14 @@ input::placeholder {
     font-weight: bold;
 }
 
+input:focus {
+    outline: 0px;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
 button {
     padding: 10px 20px;
     border: 0px;
