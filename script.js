@@ -165,10 +165,10 @@ const gameController = (function() {
     }
 
     const resetGame = () => {
-        currentPlayer = undefined;
         gameBoard.defaultPopulate();
-        playerDisplay.textContent = `Enter player name!`;
         result.textContent = '';
+        currentPlayer = player1;
+        playerDisplay.textContent = `${currentPlayer.name}'s turn`;
     }
 
     return {
@@ -188,7 +188,7 @@ function createPlayer (name, marker) {
 const reset = document.querySelector('.reset')
 reset.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
-        location.reload();
+        gameController.resetGame();
     }
 })
 
