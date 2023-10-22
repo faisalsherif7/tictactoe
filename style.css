@@ -101,3 +101,7 @@ button {
     background-color: var(--secondary-color);
     font-size: 1.5rem;
 }
+
+button.start-game {
+    margin-top: 30vh;
+}
