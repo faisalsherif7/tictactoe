@@ -16,6 +16,10 @@ const gameBoard = (function() {
 
     // Display array as an html table
     const displayBoard = function() {
+        const startGame = document.querySelector('.start-game')
+        startGame.textContent = '';
+
+        // Delete previous board to create new board
         const board = document.querySelector('.board')
         board.textContent = '';
     
