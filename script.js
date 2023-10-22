@@ -74,6 +74,13 @@ const gameController = (function() {
         let playerOne = document.querySelector('#player-one').value;
         let playerTwo = document.querySelector('#player-two').value;
 
+        if (playerOne === '') {
+            playerOne = 'PlayerOne';
+        }
+        if (playerTwo === '') {
+            playerTwo = 'PlayerTwo';
+        }
+
         player1 = createPlayer(playerOne, 'X');
         player2 = createPlayer(playerTwo, 'O');
 
