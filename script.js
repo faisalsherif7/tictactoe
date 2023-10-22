@@ -43,7 +43,7 @@ const gameBoard = (function() {
         board.appendChild(table);
 
         const reset = document.querySelector('.reset')
-        reset.innerHTML += '<button type="button" class="reset-button">Reset</button>'
+        reset.innerHTML = '<button type="button" class="reset-button">Reset</button>'
     };
 
     const updateBoard = (i, j, marker) => {
