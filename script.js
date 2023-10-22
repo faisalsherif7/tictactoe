@@ -44,6 +44,9 @@ const gameBoard = (function() {
 
         const reset = document.querySelector('.reset')
         reset.innerHTML = '<button type="button" class="reset-button">Reset</button>'
+
+        const startOver = document.querySelector('.start-over')
+        startOver.innerHTML = '<button type="button" class="start-over-button">Start Over</button>'
     };
 
     const updateBoard = (i, j, marker) => {
@@ -185,10 +188,12 @@ function createPlayer (name, marker) {
 };
 
 // Reset button
-const reset = document.querySelector('.reset')
-reset.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
+const resetButtons = document.querySelector('.reset-buttons')
+resetButtons.addEventListener('click', (event) => {
+    if (event.target.className === 'reset-button') {
         gameController.resetGame();
+    } else if (event.target.className === 'start-over-button') {
+        location.reload();
     }
 })
 

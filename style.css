@@ -154,3 +154,8 @@ button {
 .result {
     color: white;
 }
+
+.reset-buttons {
+    display: flex;
+    gap: 10px;
+}
