@@ -90,16 +90,20 @@ const gameController = (function() {
         currentPlayer = player1;
 
         playerDisplay.textContent = `${currentPlayer.name}'s turn`;
-
-        const formItemOne = document.querySelector('.form-item-one');
-        const formitemTwo = document.querySelector('.form-item-two');
-        formItemOne.innerHTML = `<div><p>${playerOne} - 'X'</p></div>`;
-        formitemTwo.innerHTML = `<div><p>${playerTwo} - 'O'</p></div>`
+        
+        updateHeader();
 
         return {
             player1,
             player2
         }
+    }
+
+    const updateHeader = () => {
+        const formItemOne = document.querySelector('.form-item-one');
+        const formitemTwo = document.querySelector('.form-item-two');
+        formItemOne.innerHTML = `<div><p>${player1.name}(X) Score - ${player1.score}</p></div>`;
+        formitemTwo.innerHTML = `<div><p>${player2.name}(O) Score - ${player2.score}</p></div>`;
     }
 
     const switchTurns = () => {
@@ -128,7 +132,7 @@ const gameController = (function() {
             // There's a win
             playerDisplay.textContent = '';
             player.score += 1;
-            console.log(`${player.name} has a score of ${player.score}`);
+            updateHeader();
             return result.textContent = `${player.name} Wins!`;
 
           } else {
