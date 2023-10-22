@@ -88,6 +88,11 @@ const gameController = (function() {
 
         playerDisplay.textContent = `${currentPlayer.name}'s turn`;
 
+        const formItemOne = document.querySelector('.form-item-one');
+        const formitemTwo = document.querySelector('.form-item-two');
+        formItemOne.innerHTML = `<div><p>${playerOne} - 'X'</p></div>`;
+        formitemTwo.innerHTML = `<div><p>${playerTwo} - 'O'</p></div>`
+
         return {
             player1,
             player2

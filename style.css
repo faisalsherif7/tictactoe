@@ -131,3 +131,14 @@ button {
     align-items: center;
     gap: 20px;
 }
+
+.form-item div {
+    font-size: 1.9rem;
+    color: black;
+    width: 100%;
+    height: 100px;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
