@@ -41,6 +41,8 @@ q:before, q:after {
 	content: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap');
+
 :root {
     --primary-color: #b91c1c;
     --secondary-color: #facc15;
@@ -48,11 +50,16 @@ q:before, q:after {
 }
 
 .container {
+    font-family: 'Playpen Sans', cursive;
     background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+}
+
+button, input {
+    font: inherit;
 }
 
 table{
@@ -86,12 +93,12 @@ input {
     color: black;
     border: 0px;
     text-align: center;
+    font-size: 1.9rem;
 }
 
 input::placeholder {
-    color: black;
+    color: red;
     font-weight: bold;
-    font-size: large;
 }
 
 button {
@@ -104,4 +111,7 @@ button {
 
 .start-game button {
     margin-top: 30vh;
+    font-size: 3rem;
+    padding: 30px 30px;
+    vertical-align: center;
 }
