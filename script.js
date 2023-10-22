@@ -102,8 +102,18 @@ const gameController = (function() {
     const updateHeader = () => {
         const formItemOne = document.querySelector('.form-item-one');
         const formitemTwo = document.querySelector('.form-item-two');
-        formItemOne.innerHTML = `<div><p>${player1.name}(X) Score - ${player1.score}</p></div>`;
-        formitemTwo.innerHTML = `<div><p>${player2.name}(O) Score - ${player2.score}</p></div>`;
+        formItemOne.innerHTML = `
+        <div class="header-column header-column-one">
+            <p>${player1.name} (X)</p> 
+            <p class="score-display">${player1.score}</p>
+        </div>
+        `;
+        formitemTwo.innerHTML = `
+        <div class="header-column header-column-two">
+            <p class="score-display">${player2.score}</p>
+            <p>${player2.name} (O)</p>
+        </div>
+        `;
     }
 
     const switchTurns = () => {
