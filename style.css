@@ -123,3 +123,11 @@ button {
     padding: 30px 30px;
     vertical-align: center;
 }
+
+.game-content {
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
