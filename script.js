@@ -152,10 +152,12 @@ const gameController = (function() {
             if (currentPlayer === undefined) {
                 return playerDisplay.textContent = `Enter player name!`;
             }
-            const i = cell.dataset.i;
-            const j = cell.dataset.j;
-            gameBoard.updateBoard(i, j, currentPlayer.marker)
-            checkGameOver(currentPlayer.name);
+            if (result.textContent === '') {
+                const i = cell.dataset.i;
+                const j = cell.dataset.j;
+                gameBoard.updateBoard(i, j, currentPlayer.marker)
+                checkGameOver(currentPlayer.name);
+            }
             if (result.textContent === '') {
                 switchTurns();
             }
