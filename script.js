@@ -42,9 +42,9 @@ const gameBoard = (function() {
         table.appendChild(tableBody);
         board.appendChild(table);
 
+        // Display buttons to reset game and start over along with the board
         const reset = document.querySelector('.reset')
         reset.innerHTML = '<button type="button" class="reset-button">Reset</button>'
-
         const startOver = document.querySelector('.start-over')
         startOver.innerHTML = '<button type="button" class="start-over-button">Start Over</button>'
     };
@@ -84,8 +84,8 @@ const gameController = (function() {
             playerTwo = 'PlayerTwo';
         }
 
-        player1 = createPlayer(playerOne, 'X');
-        player2 = createPlayer(playerTwo, 'O');
+        player1 = createPlayer(playerOne, 'X', 0);
+        player2 = createPlayer(playerTwo, 'O', 0);
 
         currentPlayer = player1;
 
@@ -111,7 +111,7 @@ const gameController = (function() {
         playerDisplay.textContent = `${currentPlayer.name}'s turn`;
     }
 
-    const checkGameOver = (name) => {
+    const checkGameOver = (player) => {
         if (// Rows
         (arr[0][0] === arr[0][1] && arr[0][0] === arr[0][2] && arr[0][0] !== '') ||
         (arr[1][0] === arr[1][1] && arr[1][0] === arr[1][2] && arr[1][0] !== '') ||
@@ -127,7 +127,9 @@ const gameController = (function() {
 
             // There's a win
             playerDisplay.textContent = '';
-            return result.textContent = `${name} Wins!`;
+            player.score += 1;
+            console.log(`${player.name} has a score of ${player.score}`);
+            return result.textContent = `${player.name} Wins!`;
 
           } else {
 
@@ -159,7 +161,7 @@ const gameController = (function() {
                 const i = cell.dataset.i;
                 const j = cell.dataset.j;
                 gameBoard.updateBoard(i, j, currentPlayer.marker)
-                checkGameOver(currentPlayer.name);
+                checkGameOver(currentPlayer);
             }
             if (result.textContent === '') {
                 switchTurns();
@@ -183,8 +185,8 @@ const gameController = (function() {
     }
 })();
 
-function createPlayer (name, marker) {
-    return { name, marker };
+function createPlayer (name, marker, score) {
+    return { name, marker, score };
 };
 
 // Reset button
